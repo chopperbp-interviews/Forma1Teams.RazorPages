@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery@3.5.1",
+      "destination": "Assets/lib/jquery/"
+    },
+    {
+      "library": "twitter-bootstrap@4.5.2",
+      "destination": "Assets/lib/twitter-bootstrap/",
+      "files": [
+        "js/bootstrap.min.js",
+        "js/bootstrap.js",
+        "css/bootstrap.css",
+        "css/bootstrap.min.css"
+      ]
+    },
+    {
+      "library": "jquery-validate@1.19.2",
+      "destination": "Assets/lib/jquery-validate/",
+      "files": [
+        "jquery.validate.min.js",
+        "jquery.validate.js"
+      ]
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.11",
+      "destination": "Assets/lib/jquery-validation-unobtrusive/"
+    },
+    {
+      "library": "popper.js@1.16.1",
+      "destination": "Assets/lib/popper.js/",
+      "files": [
+        "umd/popper.js"
+      ]
+    },
+    {
+      "library": "font-awesome@5.14.0",
+      "destination": "Assets/lib/font-awesome/",
+      "files": [
+        "css/all.css",
+        "webfonts/*"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "notyf@3.9.0",
+      "destination": "Assets/lib/notyf/",
+      "files": [
+        "notyf.umd.js",
+        "notyf.min.css"
+      ]
+    }
+  ]
+}

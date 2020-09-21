@@ -1,0 +1,42 @@
+[
+  {
+    "outputFileName": "wwwroot/css/site.min.css",
+    "inputFiles": [
+      "Assets/lib/twitter-bootstrap/css/bootstrap.css",
+      "Assets/lib/font-awesome/css/all.css",
+      "Assets/lib/notyf/notyf.min.css",
+      "Assets/site.css",
+      "Assets/table.css"
+    ],
+    "minify": {
+      "enabled": false,
+      "adjustRelativePaths": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/bundle.min.js",
+    "inputFiles": [
+      "Assets/lib/jquery/jquery.js",
+      "Assets/lib/popper.js/umd/popper.js",
+      "Assets/lib/notyf/notyf.umd.js",
+      "Assets/lib/twitter-bootstrap/js/bootstrap.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/js/bundle.validation.min.js",
+    "inputFiles": [
+      "Assets/lib/jquery-validate/jquery.validate.js",
+      "Assets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+]

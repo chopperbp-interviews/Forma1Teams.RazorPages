@@ -1,0 +1,98 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@model Forma1Teams.Web.Pages.Teams.IndexModel
+@{
+     ViewData["Title"] = "Csapat lista";
+     var deleteUrl = Url.Page("./Delete",new { id= "_id_"});
+}
+<div class="table-responsive">
+    <div class="table-title">
+        <div class="row no-gutters">
+            <div class="col-sm-8"></div>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <div class="col-sm-4">
+                    <a asp-page="./Create" class="btn btn-info add-new"><i class="fa fa-plus"></i>Új hozzáadása</a>
+                </div>
+            }
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th> @Html.DisplayNameFor(model => model.ViewModel[0].Name)</th>
+                <th> @Html.DisplayNameFor(model => model.ViewModel[0].YearOfFoundation)</th>
+                <th> @Html.DisplayNameFor(model => model.ViewModel[0].WonChampionships)</th>    
+                <th> @Html.DisplayNameFor(model => model.ViewModel[0].PaidEntryFee)</th>    
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <th></th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+@foreach (var item in Model.ViewModel) {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.YearOfFoundation)</td>
+                <td>@Html.DisplayFor(modelItem => item.WonChampionships)</td>
+                <td>@Html.DisplayFor(modelItem => item.PaidEntryFee)</td>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id" class="edit"><i data-toggle="tooltip" data-original-title="Szerkesztés" class="fas fa-pen"></i></a>
+                        <a href="#deleteModal" class="delete" data-toggle="modal" data-teamid="@item.Id"><i data-toggle="tooltip" data-original-title="Törlés" class="far fa-trash-alt"></i></a>
+                    </td>
+                }
+            </tr>
+}
+        </tbody>
+    </table>
+</div>
+<div id="deleteModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form method="post">
+				<div class="modal-header">						
+					<h4 class="modal-title">Csapat Törlése</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<p>Biztos törölni akarja a kiválasztott elemet ?</p>
+					<p class="text-warning"><small>Ezt a műveletett nem lehet visszavonni.</small></p>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Mégsem">
+        		    <input type="submit" class="btn btn-danger" value="Törlés">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+ @section Scripts {
+<script>
+    $(document).ready(function(){
+	    $('[data-toggle="tooltip"]').tooltip();
+        let deleteUrl = "@Html.Raw(deleteUrl)";
+        let notyf = new Notyf();
+        let success = "@Model.TempData["success"]";
+        let error = "@Model.TempData["error"]";
+        if(error)
+        {
+            notyf.error(error);
+        }
+        if(success)
+        {
+            notyf.success(success);
+        }
+        $('#deleteModal').on('show.bs.modal', function (event) {
+             let button = $(event.relatedTarget);
+             let teamid = button.data('teamid');
+             let modal = this;
+             let submit = modal.querySelector('form input[type=submit]');
+             submit["formAction"]=deleteUrl.replace("_id_",teamid);
+        });
+    });
+</script>
+}
